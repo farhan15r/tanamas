@@ -28,7 +28,7 @@
         @endif
         <div class="panel panel-default">
             <div class="panel-heading">
-                <p align="left"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddCars">
+                <p align="left"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Addproduct">
                         Add Product
                     </button></p>
             </div>
@@ -49,21 +49,21 @@
                             </thead>
                             <tbody>
                                 @php $no = 1; @endphp
-                                @foreach ($products as $car)
+                                @foreach ($products as $product)
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        <td>{{ $car->vendor->name_categorie }}</td>
-                                        <td>{{ $car->name_product }}</td>
-                                        <td>{{ $car->type_product }}</td>
-                                        <td>{{ $car->desc }}</td>
-                                        <td>{{ number_format($car->day_price) }}</td>
+                                        <td>{{ $product->vendor->name_categorie }}</td>
+                                        <td>{{ $product->name_product }}</td>
+                                        <td>{{ $product->type_product }}</td>
+                                        <td>{{ $product->desc }}</td>
+                                        <td>{{ number_format($product->day_price) }}</td>
                                         <td>
                                             <button class="btn btn-info btn-sm" data-toggle="modal"
-                                                data-target="#Editcar-{{ $car->id }}">
+                                                data-target="#Editproduct-{{ $product->id }}">
                                                 Edit
                                             </button>
                                             <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#Deletecar-{{ $car->id }}">
+                                                data-target="#Deleteproduct-{{ $product->id }}">
                                                 Delete
                                             </button>
                                         </td>
@@ -81,7 +81,7 @@
         <!--/.main-->
 
         <!-- The Modal -->
-        <div class="modal" id="AddCars">
+        <div class="modal" id="Addproduct">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
@@ -130,11 +130,6 @@
                             </div>
 
                             <div class="row">
-                                {{-- <div class="col-md-6">
-            <label>Seats</label>
-            <input required class="form-control" name="seats" >
-        </div> --}}
-
                                 <div class="col-md-12">
                                     <label>Image Of Product <small style="color: red">Recomended size height 366px width
                                             650px</small> </label>
@@ -142,51 +137,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="row">
-         <div class="col-md-6">
-            <label>Desc</label>
-            <input required type="text" class="form-control" name="desc" >
-        </div>
-
-         <div class="col-md-6">
-            <label>First Registration</label>
-            <input required type="date" class="form-control" name="fisrt_registartion"
-             >
-        </div>
-    </div>
-
-     <div class="row">
-         <div class="col-md-6">
-            <label>Millage</label>
-            <input required type="text" class="form-control" name="millage">
-        </div>
-
-         <div class="col-md-6">
-            <label>Fuel</label>
-            <input required type="text" class="form-control" name="fuel"
-             >
-        </div>
-    </div>
-
-     <div class="row">
-         <div class="col-md-6">
-            <label>Egine Size</label>
-            <input required type="text" class="form-control" name="engine_size" >
-        </div>
-
-         <div class="col-md-6">
-            <label>Power</label>
-            <input required type="text" class="form-control" name="power"
-             >
-        </div>
-    </div> --}}
-
                             <div class="row">
-                                {{-- <div class="col-md-6">
-            <label>Color</label>
-            <input required type="text" class="form-control" name="color" >
-        </div> --}}
-
                                 <div class="col-md-12">
                                     <label>Desc</label>
                                     {{-- <input required class="form-control" name="desc" > --}}
@@ -205,8 +156,8 @@
             </div>
         </div>
 
-        @foreach ($products as $car)
-            <div class="modal" id="Editcar-{{ $car->id }}">
+        @foreach ($products as $product)
+            <div class="modal" id="Editproduct-{{ $product->id }}">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
 
@@ -217,13 +168,13 @@
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <form role="form" action="{{ url('product_update/' . $car->id) }}" method="POST"
+                            <form role="form" action="{{ url('product_update/' . $product->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Product Name</label>
-                                        <input required class="form-control" value="{{ $car->name_product }}"
+                                        <input required class="form-control" value="{{ $product->name_product }}"
                                             name="name_product" placeholder="Product Name">
                                     </div>
 
@@ -234,7 +185,7 @@
                                             <option value="0">Choose Categorie</option>
                                             @foreach ($categories as $vd)
                                                 <option value="{{ $vd->id }}"
-                                                    {{ $car->categorie_id == $vd->id ? 'selected' : '' }}>
+                                                    {{ $product->categorie_id == $vd->id ? 'selected' : '' }}>
                                                     {{ $vd->name_categorie }}</option>
                                             @endforeach
                                         </select>
@@ -247,10 +198,10 @@
                                         <select style="width: 100%" class="form-control js-example-basic-single"
                                             name="type_product">
                                             <option value="0">Choose Type Of Product</option>
-                                            <option value="Kayu" {{ $car->type_product == 'Kayu' ? 'selected' : '' }}>
+                                            <option value="Kayu" {{ $product->type_product == 'Kayu' ? 'selected' : '' }}>
                                                 Kayu</option>
                                             <option value="Plastic"
-                                                {{ $car->type_product == 'Rotan' ? 'selected' : '' }}>Rotan</option>
+                                                {{ $product->type_product == 'Rotan' ? 'selected' : '' }}>Rotan</option>
                                         </select>
                                     </div>
 
@@ -258,76 +209,28 @@
                                     <div class="col-md-6">
                                         <label>Price</label>
                                         <input required type="text" class="form-control"
-                                            value="{{ $car->day_price }}" name="day_price">
+                                            value="{{ $product->day_price }}" name="day_price">
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    {{-- <div class="col-md-6">
-            <label>Seats</label>
-            <input required class="form-control" name="seats" placeholder="Seats"  value="{{$car->seats}}">
-        </div> --}}
-
                                     <div class="col-md-12">
                                         <label>Image Of Product <small style="color: red">Recomended size height 366px
                                                 width 650px</small></label>
                                         <input type="file" class="form-control" name="img_product">
-                                        <input type="hidden" name="old_img_product" value="{{ $car->img_product }}">
+                                        <input type="hidden" name="old_img_product" value="{{ $product->img_product }}">
 
                                         <label>If Have Been Change Imgae , click update For see update item!</label>
-                                        <img src="{{ $car->img_product }}" style="width: 30%">
+                                        <img src="{{ $product->img_product }}" style="width: 30%">
                                     </div>
                                 </div>
 
-                                {{-- <div class="row">
-         <div class="col-md-6">
-            <label>Desc</label>
-            <input required type="text" class="form-control" value="{{$car->desc}}" name="desc" >
-        </div>
-         {{-- <div class="col-md-6">
-            <label>First Registration</label>
-            <input required type="date" class="form-control" value="{{$car->fisrt_registartion}}" name="fisrt_registartion"
-             >
-        </div> --}}
-                                {{-- </div> --}}
-                                {{-- 
-     <div class="row">
-         <div class="col-md-6">
-            <label>Millage</label>
-            <input required type="text" class="form-control" value="{{$car->millage}}" name="millage">
-        </div>
-
-         <div class="col-md-6">
-            <label>Fuel</label>
-            <input required type="text" class="form-control" value="{{$car->fuel}}" name="fuel"
-             >
-        </div>
-    </div> --}}
-
-                                {{-- <div class="row">
-         <div class="col-md-6">
-            <label>Egine Size</label>
-            <input required type="text" class="form-control" value="{{$car->engine_size}}" name="engine_size" >
-        </div>
-
-         <div class="col-md-6">
-            <label>Power</label>
-            <input required type="text" class="form-control" value="{{$car->power}}" name="power"
-             >
-        </div>
-    </div> --}}
-
                                 <div class="row">
-                                    {{-- <div class="col-md-6">
-            <label>Color</label>
-            <input required type="text" class="form-control" value="{{$car->color}}" name="color" >
-        </div> --}}
-
                                     <div class="col-md-12">
                                         <label>Desc</label>
                                         {{-- <input required class="form-control" name="desc" placeholder="desc"
-                                            value="{{ $car->desc }}"> --}}
-                                            <textarea name="desc" class="form-control" cols="30" rows="10">{{ $car->desc }}</textarea>
+                                            value="{{ $product->desc }}"> --}}
+                                            <textarea name="desc" class="form-control" cols="30" rows="10">{{ $product->desc }}</textarea>
                                     </div>
                                 </div>
 
@@ -343,7 +246,7 @@
                 </div>
             </div>
 
-            <div class="modal" id="Deletecar-{{ $car->id }}">
+            <div class="modal" id="Deleteproduct-{{ $product->id }}">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
@@ -361,7 +264,7 @@
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <a href="{{ url('product_delete/' . $car->id) }}" class="btn btn-info">Yes</a>
+                            <a href="{{ url('product_delete/' . $product->id) }}" class="btn btn-info">Yes</a>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>

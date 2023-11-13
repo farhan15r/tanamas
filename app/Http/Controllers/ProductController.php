@@ -37,20 +37,20 @@ class ProductController extends Controller
 
             $key = rand().'-'.$oke;
             $tmp_file_name = "{$key}.{$extension}";
-            $tmp_file_path = "admin/images/cars/";
+            $tmp_file_path = "admin/images/products/";
             $file->move($tmp_file_path,$tmp_file_name);
             // if(move_uploaded_file($tmp_name, $tmp_file_path)){
-            $result = url('admin/images/cars').'/'.$tmp_file_name;
+            $result = url('admin/images/products').'/'.$tmp_file_name;
             // }
         return $result;
     }
-    
+
     public function index()
     {
         $products = Product::with('vendor')->get();
         $categories = Categorie::all();
         Session::put('menu','products');
-        return view('dashboard.cars',compact('products','categories'));
+        return view('dashboard.products',compact('products','categories'));
     }
 
     public function create(Request $request)
@@ -64,13 +64,7 @@ class ProductController extends Controller
         $product->categorie_id = $request->categorie_id;
         $product->img_product = $this->uploadFile($request,$img_product);
         $product->day_price = $request->day_price;
-        // $product->model = $request->model;
-        // $product->fisrt_registartion = $request->fisrt_registartion;
-        // $product->fuel = $request->fuel;
-        // $product->engine_size = $request->engine_size;
-        // $product->power = $request->power;
-        // $product->color = $request->color;
-        // $product->millage = $request->millage;
+
         $product->save();
          return redirect('products')
          ->with('success','Data product successfully added!');
@@ -94,13 +88,7 @@ class ProductController extends Controller
             $product->img_product = $request->old_img_product;
         }
         $product->day_price = $request->day_price;
-        // $product->model = $request->model;
-        // $product->fisrt_registartion = $request->fisrt_registartion;
-        // $product->fuel = $request->fuel;
-        // $product->engine_size = $request->engine_size;
-        // $product->power = $request->power;
-        // $product->color = $request->color;
-        // $product->millage = $request->millage;
+
         $product->save();
          return redirect('products')
          ->with('success','Data product successfully updated!');

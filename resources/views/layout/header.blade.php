@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="#"><span>Prod</span>uct</a>
+                <a class="navbar-brand" href="#"><span>Dash</span>board</a>
             </div>
         </div><!-- /.container-fluid -->
     </nav>
