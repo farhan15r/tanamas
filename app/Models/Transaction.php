@@ -23,7 +23,7 @@ class Transaction extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function car()
+    public function product()
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }

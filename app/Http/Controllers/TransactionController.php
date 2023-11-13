@@ -72,14 +72,13 @@ class TransactionController extends Controller
 
     public function index()
     {
-        $transactions = Transaction::with('car', 'user')->get();
+        $transactions = Transaction::with('product', 'user')->get();
         Session::put('menu', 'transactions');
         return view('dashboard.transactions', compact('transactions'));
     }
 
     public function createOnline(Request $request)
     {
-
         //$img_ktp = 'img_ktp';
         $Transactions = new Transaction;
         $Transactions->code_transaction = strtoupper(Str::random(10));
@@ -87,9 +86,11 @@ class TransactionController extends Controller
         $Transactions->product_id = $request->product_id;
         $Transactions->transaction_date = Carbon::now()->format('Y-m-d');
         $Transactions->amount = $request->amount;
+        $Transactions->quantity = $request->quantity;
+        $Transactions->total = $request->amount * $request->quantity;
         $Transactions->status_transaction = 'process';
         $Transactions->save();
-        $data = Transaction::where('id', $Transactions->id)->with('car', 'user')->first();
+        $data = Transaction::where('id', $Transactions->id)->with('product', 'user')->first();
         $pdf = PDF::loadview('web.invoice', compact('data'));
         return $pdf->download('invoice-' . $data->code_transaction . '.pdf');
     }
@@ -135,8 +136,8 @@ class TransactionController extends Controller
     public function indexReturn()
     {
         Session::put('menu', 'return');
-        $transactions = Transaction::with('car', 'user')->where('status_transaction', 'agree')->get();
-        return view('dashboard.outcar', compact('transactions'));
+        $transactions = Transaction::with('product', 'user')->where('status_transaction', 'agree')->get();
+        return view('dashboard.outproduct', compact('transactions'));
     }
 
     public function indexReport()

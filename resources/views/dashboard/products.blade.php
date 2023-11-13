@@ -39,7 +39,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Categorie Id</th>
+                                    <th>Category</th>
                                     <th>Name Of Product</th>
                                     <th>Type Of Product</th>
                                     <th>Desc</th>
@@ -215,12 +215,14 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>Image Of Product <small style="color: red">Recomended size height 366px
-                                                width 650px</small></label>
+                                        <label>Image Of Product
+                                            <small style="color: red">Recomended size height 366px width 650px</small>
+                                        </label>
+                                        <span class="col-md-12" style="padding: 0">If Have Been Change Imgae , click update For see update item!</span>
+
                                         <input type="file" class="form-control" name="img_product">
                                         <input type="hidden" name="old_img_product" value="{{ $product->img_product }}">
 
-                                        <label>If Have Been Change Imgae , click update For see update item!</label>
                                         <img src="{{ $product->img_product }}" style="width: 30%">
                                     </div>
                                 </div>

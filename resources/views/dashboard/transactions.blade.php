@@ -11,7 +11,7 @@
                 <li class="active">Transactions</li>
             </ol>
         </div><!--/.row-->
-       
+
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">List Transactions</h1>
@@ -20,7 +20,7 @@
 
         @if($message=Session::get('success'))
         <div class="alert bg-teal" role="alert">
-            <em class="fa fa-lg fa-check">&nbsp;</em> 
+            <em class="fa fa-lg fa-check">&nbsp;</em>
            {{$message}}
         </div>
         @endif
@@ -38,6 +38,8 @@
                                         <th>Name Of Customers</th>
                                         <th>Name Of Product</th>
                                         <th>Amount</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
                                         <th>Order date</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -45,31 +47,33 @@
                                 </thead>
                                 <tbody>
                                 @php $no = 1; @endphp
-                                @foreach($transactions as $car)
+                                @foreach($transactions as $transaction)
                                 <tr>
                                     <td>{{$no}}</td>
-                                    <td>{{$car->code_transaction}}</td>
-                                    <td>{{$car->user->name}}</td>
-                                    <td>{{$car->car->name_product}}</td>
-                                    <td>{{number_format($car->amount)}}</td>
-                                    <td>{{$car->transaction_date}}</td>
+                                    <td>{{$transaction->code_transaction}}</td>
+                                    <td>{{$transaction->user->name}}</td>
+                                    <td>{{$transaction->product->name_product}}</td>
+                                    <td>{{number_format($transaction->amount)}}</td>
+                                    <td>{{$transaction->quantity}}</td>
+                                    <td>{{number_format($transaction->total)}}</td>
+                                    <td>{{$transaction->transaction_date}}</td>
                                     <td>
-                                     {{$car->status_transaction}}
+                                     {{$transaction->status_transaction}}
                                     </td>
                                     <td>
-                                      @if($car->status_transaction=='process')
-                                      <a title="View" class="btn btn-success btn-sm" data-toggle="modal" 
-                                                    data-target="#waiting-{{$car->id}}">
+                                      @if($transaction->status_transaction=='process')
+                                      <a title="View" class="btn btn-success btn-sm" data-toggle="modal"
+                                                    data-target="#waiting-{{$transaction->id}}">
                                                     <i class="fa fa-eye"></i>
                                                     </a>
-                                      @elseif($car->status_transaction=='agree')
-                                        <a title="View" class="btn btn-success btn-sm" data-toggle="modal" 
-                                                    data-target="#agree-{{$car->id}}">
+                                      @elseif($transaction->status_transaction=='agree')
+                                        <a title="View" class="btn btn-success btn-sm" data-toggle="modal"
+                                                    data-target="#agree-{{$transaction->id}}">
                                                     <i class="fa fa-check"></i>
                                                     </a>
                                       @else
-                                       <a title="View" class="btn btn-success btn-sm" data-toggle="modal" 
-                                                    data-target="#refuse-{{$car->id}}">
+                                       <a title="View" class="btn btn-success btn-sm" data-toggle="modal"
+                                                    data-target="#refuse-{{$transaction->id}}">
                                                     <i class="fa fa-check"></i>
                                                     </a>
                                       @endif
@@ -77,34 +81,34 @@
                                 </tr>
                                 @php $no++; @endphp
 
-                                <div class="modal" id="waiting-{{$car->id}}">
+                                <div class="modal" id="waiting-{{$transaction->id}}">
                                   <div class="modal-dialog ">
                                     <div class="modal-content">
-                                    <div class="modal-footer">
-                                        <a onclick="return confirm('are you sure approve this transaction')" class="btn btn-success" href="{{url('transaction_action/'.$car->id.'/'.'agree')}}">Approve</a>
-                                        <a onclick="return confirm('are you sure refuse this transaction')" class="btn btn-warning"href="{{url('transaction_action/'.$car->id.'/'.'refuse')}}">Refuse</a>
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                      </div>
-                                      <!-- Modal Header -->
-                                      <div class="modal-header">
-                                        <h4 class="modal-title">Action for this transaction</h4>
-                                      </div>   
-                                       <div class="modal-body">
-                                      </div>
-                                      <!-- Modal footer -->
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Action for this transaction</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <a onclick="return confirm('are you sure approve this transaction')" class="btn btn-success" href="{{url('transaction_action/'.$transaction->id.'/'.'agree')}}">Approve</a>
+                                            <a onclick="return confirm('are you sure refuse this transaction')" class="btn btn-warning"href="{{url('transaction_action/'.$transaction->id.'/'.'refuse')}}">Refuse</a>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                        </div>
                                     </div>
                                   </div>
                                 </div>
 
-                                 <div class="modal" id="agree-{{$car->id}}">
+                                 <div class="modal" id="agree-{{$transaction->id}}">
                                   <div class="modal-dialog ">
                                     <div class="modal-content">
                                       <!-- Modal Header -->
                                       <div class="modal-header">
                                         <h4 class="modal-title">Status Transaction</h4>
-                                      </div>   
+                                      </div>
                                        <div class="modal-body">
-                                       <p>This transaction have been approved at {{$car->updated_at}}</p>
+                                       <p>This transaction have been approved at {{$transaction->updated_at}}</p>
                                       </div>
                                        <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -114,15 +118,15 @@
                                   </div>
                                 </div>
 
-                                 <div class="modal" id="refuse-{{$car->id}}">
+                                 <div class="modal" id="refuse-{{$transaction->id}}">
                                   <div class="modal-dialog ">
                                     <div class="modal-content">
                                       <!-- Modal Header -->
                                       <div class="modal-header">
                                         <h4 class="modal-title">Status Transaction</h4>
-                                      </div>   
+                                      </div>
                                        <div class="modal-body">
-                                       <p>This transaction have been refused at {{$car->updated_at}}</p>
+                                       <p>This transaction have been refused at {{$transaction->updated_at}}</p>
                                       </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

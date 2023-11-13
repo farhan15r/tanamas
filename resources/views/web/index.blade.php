@@ -20,40 +20,18 @@
         <div class="col-md-12">
             <div class="row">
                 @php $modelT = new App\Models\User(); @endphp
-                @foreach ($products as $car)
-                    @php $data = $modelT->cek_booked($car->id); @endphp
-                    <div class="col-md-6">
-                        <div class="product-item">
-                            <img src="{{ $car->img_product }}" alt="">
-                            {{-- <div class="down-content">
-                    <a href="{{url('web/car-details.html')}}"><h4>{{$car->name_car}}</h4></a>
+                @foreach ($products as $product)
+                    @php $data = $modelT->cek_booked($product->id); @endphp
+                    <div class="col-md-4 my-5">
+                    <div class="card ml-auto mr-auto" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ $product->img_product }}" alt="">
+                        <div class="card-body">
+                            <h5 align="center" class="card-title">{{ $product->name_product }}</h5>
 
-                    <h6><small><b> Price :</b></small> {{number_format($car->day_price)}}</h6>
-
-                    <p>{{$car->model}} &nbsp;/&nbsp; {{$car->power}} &nbsp;/&nbsp; {{$car->fisrt_registartion}} &nbsp;/&nbsp; {{$car->fuel}}</p>
-
-                    <small>
-                      <strong title="Author"><i class="fa fa-dashboard"></i> {{$car->millage}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                      <strong title="Author"><i class="fa fa-cube"></i> {{$car->engine_size}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-                      <strong title="Views"><i class="fa fa-cog"></i> {{$car->tyoe_car}}</strong>
-                    </small>
-                  </div> --}}
-                            @if ($data)
-                                @if ($data->status_transaction == 'process')
-                                    <p align="center"><a href="#" class="btn btn-warning btn-sm"
-                                            data-toggle="modal" data-target="#Booked">Booked</a></p>
-                                @elseif($data->status_transaction == 'agree')
-                                    <p align="center"><a href="#" class="btn btn-danger btn-sm"
-                                            data-toggle="modal" data-target="#Sold">Sold</a></p>
-                                @else
-                                    <p align="center"><a href="{{ url('product_detail/' . $car->id) }}"
-                                            class="btn btn-info btn-sm">Detail</a></p>
-                                @endif
-                            @else
-                                <p align="center"><a href="{{ url('product_detail/' . $car->id) }}"
-                                        class="btn btn-info btn-sm">Detail</a></p>
-                            @endif
+                            <p align="center"><a href="{{ url('product_detail/' . $product->id) }}"
+                                    class="btn btn-info btn-sm">Detail</a></p>
                         </div>
+                    </div>
                     </div>
                 @endforeach
                 <div class="col-md-12">

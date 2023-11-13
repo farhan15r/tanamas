@@ -29,10 +29,9 @@ Route::get('/', function () {
 
 //web
 Route::get('homepage', [WebController::class, 'index']);
-Route::get('product_detail/{id}', [WebController::class, 'detailCar']);
-Route::post('/product_search', [WebController::class, 'searchCar']);
+Route::get('product_detail/{id}', [WebController::class, 'detailProduct']);
+Route::post('/product_search', [WebController::class, 'searchProduct']);
 Route::post('/register_customer', [WebController::class, 'registCustomer']);
-Route::get('/rental_product/{id}', [WebController::class, 'rentalCar']);
 Auth::routes();
 //user
 Route::post('/log_out_admin', [UserController::class, 'log_out_admin']);

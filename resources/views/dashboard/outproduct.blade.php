@@ -46,16 +46,16 @@
                             </thead>
                             <tbody>
                                 @php $no = 1; @endphp
-                                @foreach ($transactions as $car)
+                                @foreach ($transactions as $transaction)
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        <td>{{ $car->code_transaction }}</td>
-                                        <td>{{ $car->user->name }}</td>
-                                        <td>{{ $car->car->name_product }}</td>
-                                        <td>{{ number_format($car->amount) }}</td>
-                                        <td>{{ $car->transaction_date }}</td>
+                                        <td>{{ $transaction->code_transaction }}</td>
+                                        <td>{{ $transaction->user->name }}</td>
+                                        <td>{{ $transaction->product->name_product }}</td>
+                                        <td>{{ number_format($transaction->amount) }}</td>
+                                        <td>{{ $transaction->transaction_date }}</td>
                                         <td>
-                                            {{ $car->status_transaction }}
+                                            {{ $transaction->status_transaction }}
                                         </td>
                                     </tr>
                                     @php $no++; @endphp

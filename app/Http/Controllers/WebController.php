@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Car;
 use App\Models\Product;
 use App\Models\User;
 use Session;
@@ -51,7 +50,7 @@ class WebController extends Controller
     }
 
 
-    public function detailCar($id)
+    public function detailProduct($id)
     {
         $product = Product::find($id);
         return view('web.detail',compact('product'));

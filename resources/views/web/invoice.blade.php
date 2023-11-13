@@ -107,7 +107,7 @@
 						<table>
 							<tr>
 								<td class="title">
-									PRODUCT 
+									PRODUCT
 								</td>
 
 								<td>
@@ -156,9 +156,9 @@
 				</tr>
 
 				<tr class="item">
-					<td>Product {{$data->car->name_product}}</td>
+					<td>Product {{$data->product->name_product}}</td>
 
-					<td>{{number_format($data->car->day_price)}}</td>
+					<td>{{number_format($data->product->day_price)}}</td>
 				</tr>
 
 				<tr class="total">
