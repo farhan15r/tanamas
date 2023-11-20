@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('role');
             $table->string('name');
             $table->string('phone_number')->nullable();
-            $table->text('address')->nullable();
+            $table->unsignedBigInteger('shipping_address_id')->nullable();
+            $table->unsignedBigInteger('billing_address_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -33,6 +34,7 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
         Schema::dropIfExists('users');

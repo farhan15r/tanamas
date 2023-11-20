@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Transaction;
 use DB;
 use Auth;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -48,26 +49,30 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
+    public function shipping_address() {
+        return $this->hasOne(Addresses::class, 'id', 'shipping_address_id');
+    }
+
+    public function billing_address() {
+        return $this->hasOne(Addresses::class, 'id', 'billing_address_id');
+    }
+
     public function get_contact()
     {
-        $data = User::where('contact_person','yes')->first();
-        if($data)
-        {
+        $data = User::where('contact_person', 'yes')->first();
+        if ($data) {
             return $data->phone_number;
-        }else
-        {
+        } else {
             return '012345678';
         }
     }
 
     public function get_contact_details()
     {
-        $data = User::where('contact_person','yes')->first();
-        if($data)
-        {
+        $data = User::where('contact_person', 'yes')->first();
+        if ($data) {
             return $data;
-        }else
-        {
+        } else {
             return '012345678';
         }
     }
@@ -75,42 +80,34 @@ class User extends Authenticatable
     public function get_bank()
     {
         $data = DB::table('banks')->get();
-        if(!$data->isEmpty())
-        {
+        if (!$data->isEmpty()) {
             return $data;
-        }else
-        {
+        } else {
             return '012345678';
         }
     }
 
     public function cek_pay($id)
     {
-        if(Auth::check())
-        {
-            $data = 
-            DB::table('transactions')->where('product_id',$id)->where('user_id',Auth::user()->id)->first();
-                if($data)
-                {
-                    return 1;
-                }else
-                {
-                    return 2;
-                }
-        }else
-        {
+        if (Auth::check()) {
+            $data =
+                DB::table('transactions')->where('product_id', $id)->where('user_id', Auth::user()->id)->first();
+            if ($data) {
+                return 1;
+            } else {
+                return 2;
+            }
+        } else {
             return 0;
         }
-        
     }
 
-     public function cek_booked($id)
+    public function cek_booked($id)
     {
 
         $data = DB::table('transactions')
-                ->where('product_id',$id)
-                ->first();
+            ->where('product_id', $id)
+            ->first();
         return $data;
-
     }
 }

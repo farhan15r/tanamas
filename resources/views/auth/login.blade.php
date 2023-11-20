@@ -150,9 +150,9 @@
                     <h4 class="modal-title">Register</h4>
                 </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form role="form" action="{{ url('register_customer') }}" method="POST">
+                <form role="form" action="{{ url('register_customer') }}" method="POST">
+                    <!-- Modal body -->
+                    <div class="modal-body">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -186,16 +186,127 @@
                                 </fieldset>
                             </div>
                         </div>
-                        <label>Address</label>
-                        <textarea class="form-control" name="address" placeholder="Address Of User">
 
-                      </textarea>
-                </div>
-                <div class="modal-footer">
-                    <a href="{{ url('login') }}" class="btn btn-info">Login</a>
-                    OR
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </div>
+                        <br>
+                        <h5>Bill Address</h5>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Street Address</label>
+                                    <input type="text" class="form-control see_create" name="bill_street_address"
+                                        value="" placeholder="Streer Address">
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>City</label>
+                                    <input class="form-control" name="bill_city" placeholder="City">
+                                </fieldset>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Province</label>
+                                    <input type="text" class="form-control see_create" name="bill_province"
+                                        value="" placeholder="Province">
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Postal Code</label>
+                                    <input class="form-control" name="bill_postal_code" placeholder="Postall Code">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <label>Country</label>
+                                    <input type="text" class="form-control see_create" name="bill_country"
+                                        value="" placeholder="Country">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <br>
+                        <h5>Shipping Address</h5>
+                        <br>
+
+                        <div class="row">
+                            {{-- radio button same as bill address --}}
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true"
+                                        id="isSameBillAddress" name="is_same_bill_address">
+                                    <label class="form-check-label" for="isSameBillAddress">
+                                        Address same as bill address
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div id="shippingAddress">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label>Street Address</label>
+                                        <input type="text" class="form-control see_create" name="ship_street_address"
+                                            value="" placeholder="Streer Address">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label>City</label>
+                                        <input class="form-control" name="ship_city" placeholder="City">
+                                    </fieldset>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label>Province</label>
+                                        <input type="text" class="form-control see_create" name="ship_province"
+                                            value="" placeholder="Province">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label>Postal Code</label>
+                                        <input class="form-control" name="ship_postal_code" placeholder="Postall Code">
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <label>Country</label>
+                                        <input type="text" class="form-control see_create" name="ship_country"
+                                            value="" placeholder="Country">
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url('login') }}" class="btn btn-info">Login</a>
+                        OR
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -222,6 +333,18 @@
     <!-- Additional Scripts -->
     <script src="{{ url('web/assets/js/custom.js') }}"></script>
     <script src="{{ url('web/assets/js/owl.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#isSameBillAddress").click(function() {
+                if ($(this).is(":checked")) {
+                    $("#shippingAddress").hide();
+                } else {
+                    $("#shippingAddress").show();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

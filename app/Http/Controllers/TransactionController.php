@@ -79,7 +79,6 @@ class TransactionController extends Controller
 
     public function createOnline(Request $request)
     {
-        //$img_ktp = 'img_ktp';
         $Transactions = new Transaction;
         $Transactions->code_transaction = strtoupper(Str::random(10));
         $Transactions->user_id = Auth::user()->id;
@@ -90,8 +89,11 @@ class TransactionController extends Controller
         $Transactions->total = $request->amount * $request->quantity;
         $Transactions->status_transaction = 'process';
         $Transactions->save();
-        $data = Transaction::where('id', $Transactions->id)->with('product', 'user')->first();
-        $pdf = PDF::loadview('web.invoice', compact('data'));
+        $data = Transaction::where('id', $Transactions->id)
+            ->with('product', 'user', 'user.shipping_address', 'user.billing_address')
+            ->first();
+        // dd($data);
+        $pdf = PDF::loadview('web.new_invoice', compact('data'));
         return $pdf->download('invoice-' . $data->code_transaction . '.pdf');
     }
 

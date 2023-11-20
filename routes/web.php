@@ -12,6 +12,8 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ReturnCarController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReportController;
+// use PDF;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +27,11 @@ use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return redirect('homepage');
+});
+
+Route::get('/test', function () {
+    $pdf = PDF::loadview('web.invoicetest')->setWarnings(false);
+    return $pdf->download('invoice-test.pdf');
 });
 
 //web

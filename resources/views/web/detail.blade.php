@@ -1,7 +1,7 @@
     @include('web.header')
 
     <!-- Page Content -->
-    <div class="page-heading about-heading header-text" style="background-image: url(<?php echo url('web/assets/images/heading-6-1920x500.jpg'); ?>);">
+    <div class="page-heading about-heading header-text" style="background-image: url(<?php echo url('web/assets/images/bg-1.jpg'); ?>);">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -63,7 +63,8 @@
                                     <span class="pull-left">Qty</span>
 
                                     <div class="d-flex pull-right align-items-center" style="height: 25px">
-                                        <input type="number" class="form-control pull-right" style="text-align: right;" id="qty" name="qty" value="1" min="1">
+                                        <input type="number" class="form-control pull-right" style="text-align: right;"
+                                            id="qty" name="qty" value="1" min="1">
                                     </div>
                                 </div>
                             </li>
@@ -183,20 +184,14 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        @if ($cek_pay == 1)
-                                            <p align="center">You Have Benn Order This product!</p>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">close</button>
-                                        @else
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancel</button>
-                                            <button type="submit" onclick="submitForm()" style="cursor: pointer;"
-                                                id="submit_form" class="btn btn-primary">Order Now</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="submit" onclick="submitForm()" style="cursor: pointer;"
+                                            id="submit_form" class="btn btn-primary">Order Now</button>
 
-                                            <img id="muter_beh" style="display: none"
-                                                src="{{ url('admin/images/muter.gif') }}" class="img-circle w-56"
-                                                style="margin-bottom: -7rem">
-                                        @endif
+                                        <img id="muter_beh" style="display: none"
+                                            src="{{ url('admin/images/muter.gif') }}" class="img-circle w-56"
+                                            style="margin-bottom: -7rem">
                                     </div>
                                     </form>
                                 </div>
@@ -204,7 +199,8 @@
                         </div>
                     @endauth
                     @guest
-                        <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#exampleModalR">
+                        <button type="button" class="btn btn-success pull-right" data-toggle="modal"
+                            data-target="#exampleModalR">
                             Order Now
                         </button>
                     @endauth

@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         function rupiah($angka)
         {
-            $hasil_rupiah = "Rp " . number_format($angka, 2, ',', '.');
+            $hasil_rupiah = "$ " . number_format($angka, 2, '.', ',');
             return $hasil_rupiah;
         }
 
@@ -40,7 +40,7 @@ class HomeController extends Controller
             $admin = DB::table('users')->where('role', 'admin')->count();
             $vendor = DB::table('categories')->count();
             $car = DB::table('products')->count();
-            $income = DB::table('transactions')->where('status_transaction', 'agree')->sum('amount');
+            $income = DB::table('transactions')->where('status_transaction', 'agree')->sum('total');
             $income = rupiah($income);
             //$return_car = DB::table('transactions')->where('status_car','done')->count();
             //$leased = DB::table('transactions')->where('status_car','leased')->count();

@@ -41,7 +41,7 @@ class ReportController extends Controller
 
         $likeQuert = $year . '-' . $month . '-%';
 
-        $transactions = Transaction::with('car', 'user')->where('status_transaction', 'agree')
+        $transactions = Transaction::with('product', 'user')->where('status_transaction', 'agree')
             ->where('transaction_date', 'LIKE', $likeQuert)->get();
         $pdf = PDF::loadView('pdf.report', compact('transactions', 'monthName', 'year'));
         return $pdf->download('report.pdf');

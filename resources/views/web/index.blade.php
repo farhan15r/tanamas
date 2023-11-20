@@ -4,12 +4,13 @@
 <!-- Page Content -->
 <div class="page-heading about-heading header-text" style="background-image: url(<?php echo url('web/assets/images/bg-1.jpg'); ?>);">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="text-content">
-                    <h4>Tanamas Industry Comunitas </h4>
-                    <h2>Rattan and Woody furniture </h2>
-                </div>
+        <div class="text-content d-flex align-items-center justify-content-center" style="gap: 30px">
+            <div class="">
+                <img src="\web\assets\images\logo.png" alt="">
+            </div>
+            <div class="">
+                <h4>Tanamas Industry Comunitas </h4>
+                <h2>Rattan and Woody furniture </h2>
             </div>
         </div>
     </div>
@@ -23,21 +24,19 @@
                 @foreach ($products as $product)
                     @php $data = $modelT->cek_booked($product->id); @endphp
                     <div class="col-md-4 my-5">
-                    <div class="card ml-auto mr-auto" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ $product->img_product }}" alt="">
-                        <div class="card-body">
-                            <h5 align="center" class="card-title">{{ $product->name_product }}</h5>
+                        <div class="card ml-auto mr-auto" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ $product->img_product }}" alt="">
+                            <div class="card-body">
+                                <h5 align="center" class="card-title">{{ $product->name_product }}</h5>
 
-                            <p align="center"><a href="{{ url('product_detail/' . $product->id) }}"
-                                    class="btn btn-info btn-sm">Detail</a></p>
+                                <p align="center"><a href="{{ url('product_detail/' . $product->id) }}"
+                                        class="btn btn-info btn-sm">Detail</a></p>
+                            </div>
                         </div>
                     </div>
-                    </div>
                 @endforeach
-                <div class="col-md-12">
-                    <ul class="pages">
-                        {{ $products->links() }}
-                    </ul>
+                <div class="col-md-12 d-flex justify-content-center">
+                        {{ $products->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

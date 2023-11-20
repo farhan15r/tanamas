@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product | Admin Dashbaord</title>
+    <title>Admin Dashbaord</title>
+    <link rel="icon" href="{{ url('web/assets/images/logo.png') }}">
     <link href="{{url('dashboard/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{url('dashboard/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{url('dashboard/css/datepicker3.css')}}" rel="stylesheet">
