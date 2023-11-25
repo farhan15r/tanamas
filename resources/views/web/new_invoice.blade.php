@@ -85,10 +85,63 @@
         footer * {
             font-size: x-small;
         }
+              table.header {
+            border: none !important;
+        }
+
+        table.header * {
+            border: none !important;
+        }
+
+        table.header .logo {
+            text-align: right;
+            width: 70px;
+        }
+
+        .logo img {
+            width: 70px;
+        }
+
+        table.header .spacer {
+            width: 15%;
+        }
+
+        table.header .company-text {
+            text-align: center;
+        }
+
+        table.header .company-text h3 {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        table.header .company-text p {
+            font-size: x-small;
+        }
+
     </style>
 </head>
 
 <body>
+    <table class="header">
+        <tr>
+            <td class="spacer"></td>
+            <td class="logo">
+                <img src="{{ public_path('web/assets/images/logo.png') }}" alt="logo" />
+            </td>
+            <td class="company-text" style="text-align: center;">
+                <h3>
+                    PT. TANAMAS INDUSTRY COMUNITAS
+                </h3>
+                <p>Tomang Ancak Raya 10 - 12</p>
+                <p>Jakarta 11430</p>
+                <p>INDONESIA</p>
+            </td>
+            <td class="spacer">
+            </td>
+        </tr>
+    </table>
+
+
     <table>
         <thead>
             <tr>
@@ -152,7 +205,7 @@
 
             <tr class="no-border">
                 <td class="center align-top padding-top">
-                    <p>TI4038</p>
+                    <p>{{ $data->product->style_number }}</p>
                 </td>
                 <td class="center align-top padding-top">
                     <p>{{ $data->quantity }} Pcs</p>
@@ -161,7 +214,7 @@
                     <p>{{ $data->product->name_product }}</p>
                     <p>Material: {{ $data->product->type_product }}</p>
                     <p>Country of Harvest: Indonesia</p>
-                    <p>Nat Teak</p>
+                    <p>{{ $data->product->color }}</p>
                 </td>
                 <td class="align-top padding-top left">
                     <p>USD</p>

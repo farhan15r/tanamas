@@ -22,17 +22,12 @@ class DatabaseSeeder extends Seeder
     //categorie
     DB::table('categories')->insert(
       [
-        'name_categorie' => 'Meja'
+        'name_categorie' => 'Table'
       ]
     );
     DB::table('categories')->insert(
       [
-        'name_categorie' => 'Kursi'
-      ]
-    );
-    DB::table('categories')->insert(
-      [
-        'name_categorie' => 'Laci dan Rak'
+        'name_categorie' => 'Chair'
       ]
     );
     //bank

@@ -60,10 +60,12 @@ class ProductController extends Controller
         $product->name_product = $request->name_product;
         $product->type_product = $request->type_product;
         $product->desc = $request->desc;
-        // $product->seats = $request->seats;
         $product->categorie_id = $request->categorie_id;
         $product->img_product = $this->uploadFile($request,$img_product);
-        $product->day_price = $request->day_price;
+        $product->style_number = $request->style_number;
+        $product->color = $request->color;
+        $product->price = $request->price;
+
 
         $product->save();
          return redirect('products')

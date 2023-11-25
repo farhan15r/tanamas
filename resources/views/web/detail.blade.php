@@ -55,7 +55,7 @@
                                 <div class="clearfix">
                                     <span class="pull-left">Price</span>
 
-                                    <strong class="pull-right">{{ number_format($product->day_price) }}</strong>
+                                    <strong class="pull-right">{{ $product->price }}</strong>
                                 </div>
                             </li>
                             <li class="list-group-item">
@@ -73,7 +73,7 @@
                                     <span class="pull-left">Total Price</span>
 
                                     <strong class="pull-right"
-                                        id="total-price">{{ number_format($product->day_price) }}</strong>
+                                        id="total-price">{{ $product->price }}</strong>
                                 </div>
                             </li>
                         </ul>
@@ -151,7 +151,7 @@
                                                     <div class="col-md-6">
                                                         <fieldset>
 
-                                                            <p>Price : {{ number_format($product->day_price) }}</p>
+                                                            <p>Price : {{ $product->price }}</p>
 
                                                         </fieldset>
                                                     </div>
@@ -167,7 +167,7 @@
                                                         <fieldset>
 
                                                             <p id="total-book">Total Price :
-                                                                {{ number_format($product->day_price) }}</p>
+                                                                {{ $product->price }}</p>
 
                                                         </fieldset>
                                                     </div>
@@ -179,7 +179,7 @@
                                                         {{ $b->no_rek }}</p>
                                                 @endforeach
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <input type="hidden" name="amount" value="{{ $product->day_price }}">
+                                                <input type="hidden" name="amount" value="{{ $product->price }}">
                                                 <input type="hidden" name="quantity" id="qty-input" value="1">
                                         </div>
                                     </div>
@@ -297,7 +297,7 @@
                     qty = 1;
                     $("#qty").val(qty);
                 }
-                var total = addCommas(qty * {{ $product->day_price }});
+                var total = addCommas(qty * {{ $product->price }});
                 $("#total-price").html(total);
                 $("#qty-book").html('Quantity : ' + qty);
                 $("#total-book").html('Total Price : ' + total);

@@ -17,20 +17,13 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name_product');
             $table->string('type_product');
+            $table->string('style_number');
             $table->string('img_product');
             $table->string('desc');
-            // $table->string('seats');
-            // $table->string('model'); //model
-            // $table->string('fisrt_registartion'); // fisrt_registartion
-            // $table->string('millage'); // millage
-            // $table->string('fuel'); // fuel 
-            // $table->string('engine_size'); // engine_size
-            // $table->string('power'); // power
-            // $table->string('color'); // color
+            $table->string('color');
             $table->unsignedBigInteger('categorie_id');
             $table->foreign('categorie_id')->references('id')->on('categories');
-            $table->unsignedBigInteger('day_price');
-            //$table->unsignedBigInteger('fine');
+            $table->unsignedDouble('price');
             $table->timestamps();
         });
     }

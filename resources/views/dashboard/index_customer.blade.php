@@ -118,11 +118,121 @@
                             <input class="form-control" name="phone_number" placeholder="Phone Of User">
                         </div>
 
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea class="form-control" name="address" placeholder="Address Of User">
+                        <br>
+                        <h5>Bill Address</h5>
+                        <br>
 
-            </textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Street Address</label>
+                                    <input type="text" class="form-control see_create" name="bill_street_address"
+                                        placeholder="Streer Address">
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>City</label>
+                                    <input class="form-control" name="bill_city" placeholder="City">
+
+                                </fieldset>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Province</label>
+                                    <input type="text" class="form-control see_create" name="bill_province"
+                                        placeholder="Province">
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <label>Postal Code</label>
+                                    <input class="form-control" name="bill_postal_code" placeholder="Postall Code"
+                                        </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <label>Country</label>
+                                    <input type="text" class="form-control see_create" name="bill_country"
+                                        placeholder="Country">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <br>
+                        <h5>Shipping Address</h5>
+                        <br>
+
+                        <div class="row">
+                            {{-- radio button same as bill address --}}
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true"
+                                        id="isSameBillAddress{{ $user->id }}" name="is_same_bill_address">
+                                    <label class="form-check-label" for="isSameBillAddress{{ $user->id }}">
+                                        Address same as bill address
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div id="shippingAddress{{ $user->id }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label>Street Address</label>
+                                        <input type="text" class="form-control see_create" name="ship_street_address"
+                                            placeholder="Streer Address">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label>City</label>
+                                        <input class="form-control" name="ship_city" placeholder="City">
+
+                                    </fieldset>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label>Province</label>
+                                        <input type="text" class="form-control see_create" name="ship_province"
+                                            placeholder="Province">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label>Postal Code</label>
+                                        <input class="form-control" name="ship_postal_code" placeholder="Postall Code">
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <label>Country</label>
+                                        <input type="text" class="form-control see_create" name="ship_country"
+                                            placeholder="Country">
+                                    </fieldset>
+                                </div>
+                            </div>
                         </div>
                 </div>
 
@@ -184,7 +294,8 @@
                                     <fieldset>
                                         <label>Street Address</label>
                                         <input type="text" class="form-control see_create" name="bill_street_address"
-                                        value="{{ $user->billing_address->street_address }}" placeholder="Streer Address">
+                                            value="{{ $user->billing_address->street_address }}"
+                                            placeholder="Streer Address">
                                     </fieldset>
                                 </div>
 
