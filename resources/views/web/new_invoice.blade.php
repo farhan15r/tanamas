@@ -147,6 +147,7 @@
             <tr>
                 <td colspan="8" class="title">
                     <h3>COMMERCIAL INVOICE</h3>
+                    <p style="text-align: right; font-size: x-small; padding-right: 2px">{{ $data->code_transaction }}</p>
                 </td>
             </tr>
         </thead>
@@ -192,7 +193,7 @@
                 <td class="center align-top">
                     <p>Units Pcs</p>
                 </td>
-                <td colspan="2" width="60%" class="center">
+                <td colspan="2" width="80%" class="center">
                     <p>Description</p>
                 </td>
                 <td colspan="2" class="align-top center">
@@ -210,7 +211,7 @@
                 <td class="center align-top padding-top">
                     <p>{{ $data->quantity }} Pcs</p>
                 </td>
-                <td colspan="2" width="70%" class="padding-top" style="width: 320px">
+                <td colspan="2" width="80%" class="padding-top" style="width: 320px">
                     <p>{{ $data->product->name_product }}</p>
                     <p>Material: {{ $data->product->type_product }}</p>
                     <p>Country of Harvest: Indonesia</p>
@@ -237,7 +238,7 @@
                 <td class="center align-top padding-top">
                     <p></p>
                 </td>
-                <td colspan="2" width="70%" class="padding-top">
+                <td colspan="2" width="80%" class="padding-top">
                     <p></p>
                     <p></p>
                     <p></p>
@@ -264,11 +265,13 @@
             </tr>
 
             <tr>
-                <td colspan="3">
+                <td colspan="3" class="align-top">
                     <p>Name : Azan M Tanamas</p>
-                    <p>Signature :</p>
+                    <p style="vertical-align: top">Signature :
+                        <img src="{{ storage_path('assets/ttd_azan.png') }}" alt="signature"  style="width: 185px; vertical-align: top"/>
+                    </p>
                 </td>
-                <td colspan="5">
+                <td colspan="5" class="align-top">
                     <p>Dated : {{ $data->transaction_date }}</p>
                     <p>Title : Director</p>
                 </td>

@@ -45,7 +45,7 @@
                                     <th>Type Of Product</th>
                                     <th>Style Number</th>
                                     <th>Color</th>
-                                    <th>Desc</th>
+                                    <th>Dimension</th>
                                     <th>Price (USD)</th>
                                     <th>Action</th>
                                 </tr>
@@ -60,7 +60,7 @@
                                         <td>{{ $product->type_product }}</td>
                                         <td>{{ $product->style_number }}</td>
                                         <td>{{ $product->color }}</td>
-                                        <td>{{ $product->desc }}</td>
+                                        <td>{{ $product->dimension }}</td>
                                         <td>{{ number_format($product->price) }}</td>
                                         <td>
                                             <button class="btn btn-info btn-sm" data-toggle="modal"
@@ -97,7 +97,8 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <form role="form" action="{{ url('product_add') }}" method="POST" enctype="multipart/form-data">
+                        <form role="form" action="{{ url('product_add') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -145,18 +146,15 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Image Of Product <small style="color: red">Recomended size height 366px width
                                             650px</small> </label>
                                     <input required type="file" class="form-control" name="img_product">
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Desc</label>
-                                    {{-- <input required class="form-control" name="desc" > --}}
-                                    <textarea name="desc" class="form-control" cols="30" rows="10"></textarea>
+                                <div class="col-md-6">
+                                    <label>Dimension</label>
+                                    <input required class="form-control" name="dimension" >
                                 </div>
                             </div>
 
@@ -262,10 +260,9 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>Desc</label>
-                                        {{-- <input required class="form-control" name="desc" placeholder="desc"
-                                            value="{{ $product->desc }}"> --}}
-                                        <textarea name="desc" class="form-control" cols="30" rows="10">{{ $product->desc }}</textarea>
+                                        <label>Dimension</label>
+                                        <input required class="form-control" name="dimension" placeholder="dimension"
+                                            value="{{ $product->dimension }}">
                                     </div>
                                 </div>
 

@@ -59,7 +59,7 @@ class ProductController extends Controller
         $product = new product;
         $product->name_product = $request->name_product;
         $product->type_product = $request->type_product;
-        $product->desc = $request->desc;
+        $product->dimension = $request->dimension;
         $product->categorie_id = $request->categorie_id;
         $product->img_product = $this->uploadFile($request,$img_product);
         $product->style_number = $request->style_number;
@@ -80,8 +80,8 @@ class ProductController extends Controller
         $product->name_product = $request->name_product;
         $product->type_product = $request->type_product;
         $product->categorie_id = $request->categorie_id;
-        $product->desc = $request->desc;
-        // $product->seats = $request->seats;
+        $product->dimension = $request->dimension;
+
         if($img_product_file!=null)
         {
             $product->img_product = $this->uploadFile($request,$img_product);

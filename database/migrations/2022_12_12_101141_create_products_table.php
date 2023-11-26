@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('type_product');
             $table->string('style_number');
             $table->string('img_product');
-            $table->string('desc');
+            $table->string('dimension');
             $table->string('color');
             $table->unsignedBigInteger('categorie_id');
             $table->foreign('categorie_id')->references('id')->on('categories');

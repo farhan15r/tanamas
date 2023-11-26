@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ url('web/assets/images/test.png') }}">
+    <link rel="icon" href="{{ url('web/assets/images/logo.png') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
@@ -41,7 +41,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <h2>Tanamas <em>Website</em></h2>
+                    <h2>Tanamas <em>Industry</em></h2>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,14 +62,15 @@
     </header>
 
     <!-- Page Content -->
-    <div class="page-heading contact-heading header-text" style="background-image: url(<?php echo url('web/assets/images/bg-1.jpg'); ?>);">
+    <div class="page-heading about-heading header-text" style="background-image: url(<?php echo url('web/assets/images/bg-1.jpg'); ?>);">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-content">
-                        <h4>Tanamas Industry Comunitas</h4>
-                        <h2>Rattan and Woody Furniture</h2>
-                    </div>
+            <div class="text-content d-flex align-items-center justify-content-center" style="gap: 30px">
+                <div class="">
+                    <img src="\web\assets\images\logo.png" alt="">
+                </div>
+                <div class="">
+                    <h4>Tanamas Industry Comunitas </h4>
+                    <h2>Rattan and Woody furniture </h2>
                 </div>
             </div>
         </div>
@@ -82,7 +83,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h2>Login untuk pesan sekarang</h2>
+                        <h2>Login to order</h2>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -128,10 +129,8 @@
                                     </fieldset>
                                 </div>
                                 <div class="notice-pass">
-                                    If forgot the password , you can contact administator by click this con wahtsapp
-                                    &nbsp;
-                                    <a target="_blank" href="#"> <i style="cursor: pointer;"
-                                            class="fa fa-whatsapp"></i></a>
+                                    If forgot the password, please contact administator on email: <a
+                                        href="mailto:export@tanamasindustry.com">export@tanamasindustry.com</a>
                                     <br>
                                 </div>
                             </div>
@@ -260,8 +259,8 @@
                                 <div class="col-md-6">
                                     <fieldset>
                                         <label>Street Address</label>
-                                        <input type="text" class="form-control see_create" name="ship_street_address"
-                                            value="" placeholder="Streer Address">
+                                        <input type="text" class="form-control see_create"
+                                            name="ship_street_address" value="" placeholder="Streer Address">
                                     </fieldset>
                                 </div>
 
@@ -286,7 +285,8 @@
                                 <div class="col-md-6">
                                     <fieldset>
                                         <label>Postal Code</label>
-                                        <input class="form-control" name="ship_postal_code" placeholder="Postall Code">
+                                        <input class="form-control" name="ship_postal_code"
+                                            placeholder="Postall Code">
                                     </fieldset>
                                 </div>
                             </div>

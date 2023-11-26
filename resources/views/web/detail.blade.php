@@ -37,7 +37,7 @@
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Categorie</span>
+                                    <span class="pull-left">Category</span>
 
                                     <strong
                                         class="pull-right">{{ strtoupper($product->vendor->name_categorie) }}</strong>
@@ -46,9 +46,9 @@
 
                             <li class="list-group-item">
                                 <div class="clearfix">
-                                    <span class="pull-left">Desc</span>
+                                    <span class="pull-left">Dimension</span>
 
-                                    <strong class="pull-right">{{ strtoupper($product->desc) }}</strong>
+                                    <strong class="pull-right">{{ strtoupper($product->dimension) }}</strong>
                                 </div>
                             </li>
                             <li class="list-group-item">
@@ -72,8 +72,7 @@
                                 <div class="clearfix">
                                     <span class="pull-left">Total Price</span>
 
-                                    <strong class="pull-right"
-                                        id="total-price">{{ $product->price }}</strong>
+                                    <strong class="pull-right" id="total-price">{{ $product->price }}</strong>
                                 </div>
                             </li>
                         </ul>
@@ -109,7 +108,7 @@
                                     <div class="modal-body">
                                         <div class="contact-form">
                                             <form target="_blank" action="{{ url('transaction_add') }}" method="POST"
-                                                id="contact">
+                                                id="form_order">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -134,13 +133,15 @@
 
                                                     <div class="col-md-6">
                                                         <fieldset>
-
-                                                            <p>{{ Auth::user()->address }}</p>
-
+                                                            @php
+                                                                $shipping_address = Auth::user()->shipping_address;
+                                                            @endphp
+                                                            <p>{{ $shipping_address->street_address . ', ' . $shipping_address->city . ', ' . $shipping_address->province . ', ' . $shipping_address->country . ', ' . $shipping_address->postal_code }}
+                                                            </p>
                                                         </fieldset>
                                                     </div>
                                                 </div>
-
+                                                <br>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <fieldset>
@@ -173,25 +174,32 @@
                                                     </div>
                                                 </div>
                                                 <p align="center"><strong><u>Information for payment</u></strong></p>
-                                                @foreach ($bank as $b)
-                                                    <p>Bank / An / Number : {{ $b->name_bank }} / {{ $b->an }}
-                                                        /
-                                                        {{ $b->no_rek }}</p>
-                                                @endforeach
+                                                    <p>
+                                                        Please transfer the amount to the account on the invoice!.
+                                                    </p>
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <input type="hidden" name="amount" value="{{ $product->price }}">
                                                 <input type="hidden" name="quantity" id="qty-input" value="1">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Cancel</button>
-                                        <button type="submit" onclick="submitForm()" style="cursor: pointer;"
-                                            id="submit_form" class="btn btn-primary">Order Now</button>
-
-                                        <img id="muter_beh" style="display: none"
-                                            src="{{ url('admin/images/muter.gif') }}" class="img-circle w-56"
-                                            style="margin-bottom: -7rem">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" id="submit_form" class="btn btn-primary">
+                                            <svg id="loading_icon" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" hidden>
+                                                <path fill="currentColor"
+                                                    d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z"
+                                                    opacity=".5" />
+                                                <path fill="currentColor" d="M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z">
+                                                    <animateTransform attributeName="transform" dur="1s"
+                                                        from="0 12 12" repeatCount="indefinite" to="360 12 12"
+                                                        type="rotate" />
+                                                </path>
+                                            </svg>
+                                            Order Now
+                                        </button>
                                     </div>
                                     </form>
                                 </div>
@@ -303,6 +311,17 @@
                 $("#total-book").html('Total Price : ' + total);
                 $("#qty-input").val(qty);
                 adjustInputWidth(qty);
+            });
+
+            $('#submit_form').on('click', function() {
+                $('#loading_icon').removeAttr('hidden');
+                $('#submit_form').prop('disabled', true);
+                setTimeout(function() {
+                    $('#form_order').submit();
+                }, 1000);
+                setTimeout(function() {
+                    window.location.reload();
+                }, 2000);
             });
         });
     </script>
