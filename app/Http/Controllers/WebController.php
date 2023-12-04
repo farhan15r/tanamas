@@ -29,7 +29,7 @@ class WebController extends Controller
 
     public function index()
     {
-        $products = Product::with('vendor')->paginate(8);
+        $products = Product::with('vendor')->paginate(9);
         return view('web.index',compact('products'));
     }
 
