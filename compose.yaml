@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tanamas-img:latest
+    environment:
+      - APP_DEBUG=true
+      - APP_KEY=base64:firdmCHiz7DoVMtqevPK3zImer6sg1ccz5ALDGoIFdE=
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=db_tanamas
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+    depends_on:
+      - db
+    networks:
+      - app-network
+    ports:
+      - "8000:8000"
+
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: db_tanamas
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local

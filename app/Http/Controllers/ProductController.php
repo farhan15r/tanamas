@@ -89,7 +89,7 @@ class ProductController extends Controller
         {
             $product->img_product = $request->old_img_product;
         }
-        $product->day_price = $request->day_price;
+        $product->price = $request->price;
 
         $product->save();
          return redirect('products')
