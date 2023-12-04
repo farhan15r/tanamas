@@ -90,6 +90,7 @@ class ProductController extends Controller
             $product->img_product = $request->old_img_product;
         }
         $product->price = $request->price;
+        $product->color = $request->color;
 
         $product->save();
          return redirect('products')
