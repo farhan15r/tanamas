@@ -211,11 +211,11 @@
                                         <select style="width: 100%" class="form-control js-example-basic-single"
                                             name="type_product">
                                             <option value="0">Choose Type Of Product</option>
-                                            <option value="Kayu"
-                                                {{ $product->type_product == 'Kayu' ? 'selected' : '' }}>
-                                                Kayu</option>
-                                            <option value="Plastic"
-                                                {{ $product->type_product == 'Rotan' ? 'selected' : '' }}>Rotan</option>
+                                            <option value="Wood"
+                                                {{ $product->type_product == 'Wood' ? 'selected' : '' }}>
+                                                Wood</option>
+                                            <option value="Rattan"
+                                                {{ $product->type_product == 'Rattan' ? 'selected' : '' }}>Rattan</option>
                                         </select>
                                     </div>
 
